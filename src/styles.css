@@ -1,0 +1,136 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.18 0.035 265);
+  --foreground: oklch(0.985 0.005 250);
+  --card: oklch(0.255 0.035 265);
+  --card-foreground: oklch(0.985 0.005 250);
+  --popover: oklch(0.255 0.035 265);
+  --popover-foreground: oklch(0.985 0.005 250);
+  --primary: oklch(0.62 0.21 295);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.30 0.035 265);
+  --secondary-foreground: oklch(0.985 0.005 250);
+  --muted: oklch(0.29 0.03 265);
+  --muted-foreground: oklch(0.72 0.025 255);
+  --accent: oklch(0.74 0.13 215);
+  --accent-foreground: oklch(0.15 0.03 265);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.72 0.18 155);
+  --warning: oklch(0.8 0.16 80);
+  --border: oklch(0.35 0.04 265 / 50%);
+  --input: oklch(0.35 0.04 265 / 50%);
+  --ring: oklch(0.62 0.21 295);
+  --chart-1: oklch(0.62 0.21 295);
+  --chart-2: oklch(0.74 0.13 215);
+  --chart-3: oklch(0.72 0.18 155);
+  --chart-4: oklch(0.8 0.16 80);
+  --chart-5: oklch(0.7 0.19 350);
+
+  --gradient-primary: linear-gradient(135deg, oklch(0.62 0.21 295), oklch(0.74 0.13 215));
+  --shadow-glow: 0 14px 40px -18px oklch(0.62 0.21 295 / 50%);
+  --shadow-card: 0 8px 24px -12px oklch(0 0 0 / 45%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+  body {
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    /* Static, lightweight ambient gradient — no fixed attachment, no blur */
+    background-image:
+      radial-gradient(800px 500px at 15% -10%, oklch(0.62 0.21 295 / 18%), transparent 60%),
+      radial-gradient(700px 500px at 100% 110%, oklch(0.74 0.13 215 / 14%), transparent 60%);
+    background-repeat: no-repeat;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+@layer utilities {
+  /* No backdrop-filter — much faster than blurred glass everywhere */
+  .glass {
+    background: linear-gradient(140deg, oklch(0.27 0.035 265 / 92%), oklch(0.22 0.035 265 / 92%));
+    border: 1px solid oklch(1 0 0 / 7%);
+    box-shadow: var(--shadow-card);
+  }
+  .glass-strong {
+    background: oklch(0.24 0.035 265 / 96%);
+    border: 1px solid oklch(1 0 0 / 9%);
+    box-shadow: var(--shadow-card);
+  }
+  .gradient-primary { background: var(--gradient-primary); }
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .glow { box-shadow: var(--shadow-glow); }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { scrollbar-width: none; }
+  .perspective-1000 { perspective: 1000px; }
+  .preserve-3d { transform-style: preserve-3d; }
+  .backface-hidden { backface-visibility: hidden; }
+
+  /* Premium Typography for Notes */
+  .prose {
+    --tw-prose-body: oklch(0.7 0.02 250);
+    --tw-prose-headings: white;
+    --tw-prose-links: var(--color-primary);
+    line-height: 1.75;
+  }
+  .prose h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--tw-prose-headings); }
+  .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; color: var(--tw-prose-headings); }
+  .prose p { margin-bottom: 1.25rem; }
+  .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .prose li { margin-bottom: 0.5rem; }
+  .prose-invert { color: var(--tw-prose-body); }
+
+  .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: oklch(1 0 0 / 10%); border-radius: 10px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: oklch(1 0 0 / 20%); }
+}
+
+@font-face { font-family: 'Inter'; src: local('Inter'); }
