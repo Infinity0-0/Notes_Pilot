@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({ target: "react", autoCodeSplitting: true }),
+    TanStackRouterVite({ target: "react", autoCodeSplitting: true, generatedRouteTree: "./src/routeTree.gen.js", disableTypes: true }),
     react(),
     tailwindcss(),
     tsconfigPaths(),
